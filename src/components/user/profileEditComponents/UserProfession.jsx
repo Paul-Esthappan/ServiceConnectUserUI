@@ -12,8 +12,8 @@ const UserProfession = ({ profile, handleInputChange }) => {
           className="input-field bg-primary text-field-text font-semibold p-3 rounded-lg w-full shadow-xl"
         >
           <option value="">Select Gender</option>
-          <option value="male">Male</option>
-          <option value="female">Female</option>
+          <option value="M">Male</option>
+          <option value="F">Female</option>
           <option value="other">Other</option>
         </select>
       </div>

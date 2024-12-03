@@ -36,18 +36,19 @@ const FormComponent = ({ fieldConfigs, buttonConfig, inputConfig, apiEndpoint, h
     fieldConfigs.reduce((schema, field) => {
       if (field.placeholder.toLowerCase().includes('password') && field.name !== 'confirmPassword') {
         schema[field.name] = Yup.string()
-          .required(`${field.label} is required`)
-          .matches(
-            /^(?=.*[a-z])(?=.*[A-Z])(?=.*[@])(?=.*\d)[A-Za-z\d@]{8,}$/,
-            'Password must contain at least 8 characters, including uppercase, lowercase, number, and @'
-          );
+			.required(`${field.label} is required`)
+			.matches(
+				// /^(?=.*[a-z])(?=.*[A-Z])(?=.*[@])(?=.*\d)[A-Za-z\d@]{8,}$/,
+				/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>/?])[A-Za-z\d!@#$%^&*()_+\-=\[\]{};':"\\|,.<>/?]{8,}$/,
+				"Password must contain at least 8 characters, including uppercase, lowercase, number, and @"
+			);
       } else if (field.name === 'confirmPassword') {
         schema[field.name] = Yup.string()
           .required('Confirm password is required')
           .oneOf([Yup.ref('password'), null], 'Passwords must match');
       } else if (field.placeholder.toLowerCase().includes('email')) {
         schema[field.name] = Yup.string()
-          .email('Invalid email address')
+          // .email('Invalid email address')
           .required(`${field.label} is required`);
       } else if (field.required) {
         schema[field.name] = Yup.string().required(`${field.label} is required`);

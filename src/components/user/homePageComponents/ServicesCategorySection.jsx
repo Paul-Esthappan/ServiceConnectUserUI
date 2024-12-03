@@ -43,7 +43,7 @@ const ServiceCategorySection = ({ serviceCategories }) => {
                     {serviceCategories.map((category) => (
                         <div key={category.id} className="flex-shrink-0 snap-start">
                             <ServiceCard
-                                imgUrl={category.imgUrl}
+                                imgUrl={category?.image}
                                 title={category.title}
                                 altText={category.title}
                             />

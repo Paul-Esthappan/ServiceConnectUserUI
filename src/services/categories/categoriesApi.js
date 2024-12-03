@@ -1,4 +1,4 @@
-//categoriesApi.js
+ //categoriesApi.js
 import axiosInstance from "../../axios/axiosInstance.js";
 
 export const fetchCategories = async () => {
