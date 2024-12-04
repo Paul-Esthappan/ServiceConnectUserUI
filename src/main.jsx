@@ -7,7 +7,7 @@ import App from './App';
 import './index.css';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
-import { persistor, store } from './redux/store';
+import { persistor, store } from './store';
 
 const clientId = import.meta.env.VITE_GOOGLE_CLIENT_ID
 

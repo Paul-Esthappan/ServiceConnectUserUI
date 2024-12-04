@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { loginUser } from "../../../services/apiServices/authApi.js";
 import { useDispatch } from "react-redux";
-// import { loginSuccess } from "../../../redux/features/userSlice.js";
+import { setTokens } from "../../../features/auth/authSlice.js";
 
 const SignInUser = () => {
 	const navigate = useNavigate();
@@ -49,7 +49,7 @@ const SignInUser = () => {
 			const response = await loginUser(values);
 			console.log(response)
 			localStorage.setItem("token", response.token);
-			// dispatch(loginSuccess(response));
+			dispatch(setTokens(response));
 
 			await new Promise((resolve) => setTimeout(resolve, 500));
 

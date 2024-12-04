@@ -1,11 +1,14 @@
 import { useState, useEffect } from "react";
 import { fetchCategories } from "./../../../../services/categories/categoriesApi";
+import { useDispatch } from "react-redux";
+import { fetchCategoriesData } from "../../../../features/category/categorySlice";
 
 /**
  * Custom hook to fetch home data asynchronously using async/await.
  * Returns banner data, service categories, services data, and service providers.
  */
 const useHomeData = () => {
+	const dispatch = useDispatch()
 	const [bannerData, setBannerData] = useState([]);
 	const [serviceCategories, setServiceCategories] = useState([]);
 	const [servicesData, setServicesData] = useState([]);
@@ -104,6 +107,7 @@ const useHomeData = () => {
 				// ]);
 
 				const response = await fetchCategories();
+				dispatch(fetchCategoriesData(response));
 				setServiceCategories(response);
 
 				// Fetching services data

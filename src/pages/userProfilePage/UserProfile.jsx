@@ -1,18 +1,17 @@
 import React, { useEffect } from "react";
 import ProfileInfo from "../../components/user/userProfilePageComponents/ProfileInfo";
 import ProfileOptions from "../../components/user/userProfilePageComponents/ProfileOptions";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { getProfile } from "../../services/apiServices/authApi";
-// import { setUserInfo } from "../../redux/features/userSlice";
+import { setUser } from "../../features/auth/authSlice";
 
 const UserProfile = () => {
 	const dispatch = useDispatch();
-	const { token } = useSelector((state) => state.user);
 
 	const getUserProfile = async() => {
-		const response = await getProfile(token);
-		// console.log(response);
-		// dispatch(setUserInfo(response))
+		const response = await getProfile();
+		console.log(response);
+		dispatch(setUser(response));
 	};
 
 	useEffect(() => {

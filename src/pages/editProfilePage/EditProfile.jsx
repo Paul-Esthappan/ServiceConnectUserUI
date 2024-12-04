@@ -7,10 +7,10 @@ import UserProfession from "../../components/user/profileEditComponents/UserProf
 import UpdateButton from "../../components/user/profileEditComponents/UpdateButton";
 import { useDispatch, useSelector } from "react-redux";
 import { updateProfile } from "../../services/apiServices/authApi";
-// import { setUserInfo } from "../../redux/features/userSlice";
+import { setUser } from "../../features/auth/authSlice";
 
 const EditProfile = () => {
-	const { userInfo, token } = useSelector((state) => state.user);
+	const { user } = useSelector((state) => state.auth);
   	const dispatch = useDispatch();
 
 	const [profile, setProfile] = useState({
@@ -24,21 +24,21 @@ const EditProfile = () => {
 		countryCode: "+91", // Default country code
 	});
 
-	// Initialize state with userInfo
+	// Initialize state with user
 	useEffect(() => {
-		if (userInfo) {
+		if (user) {
 			setProfile((prevState) => ({
 				...prevState,
-				fullName: userInfo?.user?.full_name || "",
-				// nickName: userInfo.user.nick_name || "",
-				dob: userInfo?.date_of_birth || "",
-				email: userInfo?.user?.email || "",
-				phone: userInfo?.user?.watsapp || "",
-				gender: userInfo?.gender || "",
-				// studentStatus: userInfo.user.studentStatus || "",
+				fullName: user?.user?.full_name || "",
+				// nickName: user.user.nick_name || "",
+				dob: user?.date_of_birth || "",
+				email: user?.user?.email || "",
+				phone: user?.user?.watsapp || "",
+				gender: user?.gender || "",
+				// studentStatus: user.user.studentStatus || "",
 			}));
 		}
-	}, [userInfo]);
+	}, [user]);
 
 	const handleInputChange = (e) => {
 		const { name, value } = e.target;
@@ -57,8 +57,8 @@ const EditProfile = () => {
 			gender: profile?.gender,
 		};
 
-		const response = await updateProfile(token, formatedData);
-    // dispatch(setUserInfo(response));
+		const response = await updateProfile(formatedData);
+		dispatch(setUser(response));
 	};
 
 	return (

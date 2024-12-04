@@ -8,8 +8,9 @@
 
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import store from '../app/store';
+// import store from '../app/store';
 import { setTokens, logout } from '../features/auth/authSlice';
+import { store } from '../store';
 
 const baseURL = import.meta.env.VITE_API_URL;
 

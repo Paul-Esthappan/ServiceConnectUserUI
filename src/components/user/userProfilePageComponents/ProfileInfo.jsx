@@ -3,7 +3,7 @@ import { CiImageOn } from "react-icons/ci";
 import { useSelector } from 'react-redux';
 
 const ProfileInfo = () => {
-  const { userInfo } = useSelector((state) => state.user);
+  const { user } = useSelector((state) => state.auth);
   const [profilePic, setProfilePic] = useState("https://cdn4.vectorstock.com/i/1000x1000/01/38/young-man-profile-vector-14770138.jpg");
 
 
@@ -21,7 +21,7 @@ const ProfileInfo = () => {
 		<div className="flex flex-col items-center">
 			<div className="relative">
 				<img
-					src={userInfo?.profile_image || profilePic}
+					src={user?.profile_image || profilePic}
 					alt="profile"
 					className="w-24 h-24 rounded-full border-4 border-light-gray shadow-md"
 				/>
@@ -41,9 +41,9 @@ const ProfileInfo = () => {
 
 			<div className="text-center mt-4">
 				<h2 className="text-2xl font-semibold">
-					{userInfo?.user?.full_name}
+					{user?.user?.full_name}
 				</h2>
-				<p className="text-gray-500">{userInfo?.user?.email}</p>
+				<p className="text-gray-500">{user?.user?.email}</p>
 			</div>
 		</div>
   );

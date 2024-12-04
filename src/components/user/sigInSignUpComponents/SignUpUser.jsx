@@ -1,10 +1,14 @@
 import React from "react";
+import { useDispatch } from 'react-redux';
 import FormComponent from "../../reUsableComponents/FormComponent";
 import GoogleLoginButton from "./GoogleButtonComponent";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { registerUser } from "../../../services/apiServices/authApi";
+import { setOtpProvider } from "../../../features/auth/authSlice";
 
 const SignUpUser = () => {
+	const navigate = useNavigate();
+	const dispatch = useDispatch();
 	const fieldConfigs = [
 		{
 			name: "email_or_phone",
@@ -40,7 +44,15 @@ const SignUpUser = () => {
 	};
 
 	const apiEndpoint = async (values) => {
-		console.log("Form submitted with values:", values);
+		// console.log("Form submitted with values:", values);
+		try {
+			const response = await registerUser(values);
+			dispatch(setOtpProvider(values.email_or_phone));
+			console.log(response);
+			navigate("/otp");
+		} catch (error) {
+			console.error("Error occurred during form submission:", error);
+		}
 
 		const response = await registerUser(values);
 		console.log(response);

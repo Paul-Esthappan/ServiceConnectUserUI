@@ -5,7 +5,7 @@ import axiosInstance from "../../axios/axiosInstance";
 // register api
 export const registerUser = async (data) => {
 	try {
-		const response = await axiosInstance.post("/customer/register/", data);
+		const response = await axiosInstance.post("/register/", data);
 		return response.data;
 	} catch (error) {
 		console.error("Error registering user:", error);
@@ -17,7 +17,7 @@ export const registerUser = async (data) => {
 export const verifyOtpRegistration = async (data) => {
 	try {
 		const response = await axiosInstance.post(
-			"/customer/verify-otp-registration/",
+			"/verify-otp-registration/",
 			data
 		);
 		return response.data;
@@ -31,7 +31,7 @@ export const verifyOtpRegistration = async (data) => {
 export const resendOtp = async (data) => {
 	try {
 		const response = await axiosInstance.post(
-			"/customer/resend-otp/",
+			"/resend-otp/",
 			data
 		);
 		return response.data;
@@ -44,7 +44,7 @@ export const resendOtp = async (data) => {
 // login user
 export const loginUser = async (data) => {
 	try {
-		const response = await axiosInstance.post("/customer/login/", data);
+		const response = await axiosInstance.post("/login/", data);
 		return response.data;
 	} catch (error) {
 		console.error("Error logging in user:", error);
@@ -56,7 +56,7 @@ export const loginUser = async (data) => {
 export const forgotPassword = async (data) => {
 	try {
 		const response = await axiosInstance.post(
-			"/customer/password-forgot/",
+			"/password-forgot/",
 			data
 		);
 		return response.data;
@@ -95,13 +95,9 @@ export const verifyOtp = async (data) => {
 };
 
 // get profile
-export const getProfile = async (token) => {
+export const getProfile = async () => {
 	try {
-		const response = await axiosInstance.get("/customer/profile/", {
-			headers: {
-				Authorization: `Bearer ${token}`,
-			},
-		});
+		const response = await axiosInstance.get("/profile/");
 		return response.data;
 	} catch (error) {
 		console.error("Error get profile:", error);
@@ -112,16 +108,11 @@ export const getProfile = async (token) => {
 
 // update profile
 
-export const updateProfile = async (token, profile) => {
+export const updateProfile = async ( profile) => {
 	try {
 		const response = await axiosInstance.put(
-			"/customer/profile/",
+			"/profile/",
 			profile,
-			{
-				headers: {
-					Authorization: `Bearer ${token}`,
-				},
-			}
 		);
 		return response.data;
 	} catch (error) {

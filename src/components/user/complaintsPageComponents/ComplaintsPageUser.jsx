@@ -4,6 +4,7 @@ import bookings from '../../../utils/designUtils/bookingsData';
 import ConfirmationModal from '../../reUsableComponents/ConfirmationModal';
 import { getButtonDetails, mapStatus } from '../../../utils/designUtils/bookingStatusUtils';
 import { useNavigate } from 'react-router-dom';
+import { fetchComplaints } from '../../../services/subcategories/subcategoriesApi';
 
 const ComplaintsPageUser = () => {
     // State to handle modal visibility and selected booking
@@ -12,7 +13,17 @@ const ComplaintsPageUser = () => {
     const [complaints, setComplaints] = useState([]);
     const navigate = useNavigate();
 
+    const fetchComplaintsData = async() => {
+        try {
+            const response = await fetchComplaints()
+            console.log(response)
+        } catch (error) {
+            
+        }
+    }
+
     useEffect(() => {
+        fetchComplaintsData();
         const complaint = bookings.filter((booking) => booking.complaint === 'requested' || booking.complaint === 'resolved');
         setComplaints(complaint);
     }, []); 
