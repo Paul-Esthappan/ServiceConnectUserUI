@@ -33,7 +33,7 @@ const Home = () => {
                 <SearchBar />
                 <BannerSlider bannerData={bannerData} />
                 <ServicesCategorySection serviceCategories={serviceCategories} />
-                <ServicesSection servicesData={servicesData} />
+                <ServicesSection />
                 <TopServiceProviders serviceProviders={serviceProviders} />
                 <BottomNavBar />
             </div>

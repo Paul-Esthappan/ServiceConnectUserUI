@@ -1,9 +1,9 @@
-//categoriesApi.js
+ //categoriesApi.js
 import axiosInstance from "../../axios/axiosInstance.js";
 
 export const fetchCategories = async () => {
   try {
-    const response = await axiosInstance.get('/customer/categories');
+    const response = await axiosInstance.get('/categories');
     if (response.status !== 200) {
       throw new Error('Failed to fetch categories');
     }
